@@ -1,0 +1,51 @@
+{
+	"name": "Quick Phrase for Chrome",
+  "short_name": "QuickPhrase",
+  "version": "1.0",
+  "manifest_version": 2,
+  "icons": {
+    "2": "images/icon2.png"
+  },
+  "default_locale": "en",
+  "offline_enabled": true,
+  "background": {
+    "scripts": [
+      "scripts/backgroundRun.js",
+      "scripts/backgroundInstall.js",
+      "scripts/backgroundMessages.js"
+    ],
+		"persistent": "false"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "unlimitedStorage",
+    "<all_urls>",
+    "notifications",
+    "clipboardRead"
+  ],
+  "setup_struct": {
+    "page": "setup.html",
+    "chrome_style": true
+  },
+  "setup_page": "setup.html",
+  "content_scripts": [
+    {
+  		"matches": [ "<all_urls>" ],
+  		"match_about_blank": true,
+  		"all_frames": true,
+      "js": [
+  			"frames/jquery-3.4.1.slim.min.js",
+        "scripts/backgroundRun.js",
+        "scripts/run-quick.js"
+  		],
+      "run_at": "document_start"
+  	}
+  ],
+  "browser_action": {
+    "default_icon": {
+      "icon1": "images/icon1.png"
+    },
+    "default_title": "Quick Phrase"
+  }
+}
